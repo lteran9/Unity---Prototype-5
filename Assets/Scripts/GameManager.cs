@@ -13,35 +13,35 @@ public class GameManager : MonoBehaviour
    /// <summary>
    /// Ends the game when the value reaches 0.
    /// </summary>
-   public int lives;
+   [SerializeField] private int lives;
 
    /// <summary>
    /// Use this variable to determine if the game is in session or not.
    /// </summary>
-   public bool isGameActive;
+   [SerializeField] private bool isGameActive;
    /// <summary>
    /// Use this variable to determine if the game is paused.
    /// </summary>
-   public bool isGamePaused;
+   [SerializeField] private bool isGamePaused;
 
    /// <summary>
    /// The time in seconds between enemy spawns.
    /// </summary>
-   public float spawnRate;
+   [SerializeField] private float spawnRate;
 
-   public Slider _volumeSlider;
-   public AudioSource _audioSource;
-   public AudioClip _targetSpawn;
-   public Button restartButton;
-   public GameObject titleScreen;
-   public TextMeshProUGUI scoreText;
-   public TextMeshProUGUI livesText;
-   public TextMeshProUGUI gameOverText;
+   [SerializeField] private Slider _volumeSlider;
+   [SerializeField] private AudioSource _audioSource;
+   [SerializeField] private AudioClip _targetSpawn;
+   [SerializeField] private Button restartButton;
+   [SerializeField] private GameObject titleScreen;
+   [SerializeField] private TextMeshProUGUI scoreText;
+   [SerializeField] private TextMeshProUGUI livesText;
+   [SerializeField] private TextMeshProUGUI gameOverText;
 
    /// <summary>
    /// A list of the objects on screen that can be clicked on by the user.
    /// </summary>
-   public List<GameObject> targets;
+   [SerializeField] private List<GameObject> targets;
 
    /// <summary>
    /// Cumulative score of the active game session.
@@ -49,13 +49,13 @@ public class GameManager : MonoBehaviour
    private int score;
 
    // Start is called before the first frame update
-   void Start()
+   private void Start()
    {
 
    }
 
    // Update is called once per frame
-   void Update()
+   private void Update()
    {
       // If user clicks the P key
       if (Input.GetKeyDown(KeyCode.P))
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
    /// <summary>
    /// This coroutine will continuously spawn enemy objects at a random position until the game ends.
    /// </summary>
-   IEnumerator SpawnTarget()
+   private IEnumerator SpawnTarget()
    {
       while (isGameActive)
       {
@@ -145,4 +145,13 @@ public class GameManager : MonoBehaviour
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
    }
 
+   public bool IsGameActive()
+   {
+      return isGameActive;
+   }
+
+   public bool IsGamePaused()
+   {
+      return isGamePaused;
+   }
 }

@@ -32,7 +32,7 @@ public class Target : MonoBehaviour
    public ParticleSystem explosionParticle;
 
    // Start is called before the first frame update
-   void Start()
+   private void Start()
    {
       targetRb = GetComponent<Rigidbody>();
       gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -44,14 +44,14 @@ public class Target : MonoBehaviour
    }
 
    // Update is called once per frame
-   void Update()
+   private void Update()
    {
 
    }
 
-   void OnMouseDown()
+   private void OnMouseDown()
    {
-      if (gameManager.isGameActive && gameManager.isGamePaused == false)
+      if (gameManager.IsGameActive() && gameManager.IsGamePaused() == false)
       {
          Destroy(gameObject);
          Instantiate(explosionParticle, transform.position, transform.rotation);
@@ -60,7 +60,7 @@ public class Target : MonoBehaviour
       }
    }
 
-   void OnTriggerEnter(Collider other)
+   private void OnTriggerEnter(Collider other)
    {
       Destroy(gameObject);
 
@@ -70,17 +70,17 @@ public class Target : MonoBehaviour
       }
    }
 
-   float RandomTorque()
+   private float RandomTorque()
    {
       return Random.Range(-torque, torque);
    }
 
-   Vector3 RandomForce()
+   private Vector3 RandomForce()
    {
       return Vector3.up * Random.Range(minSpeed, maxSpeed);
    }
 
-   Vector3 RandomSpawnPos()
+   private Vector3 RandomSpawnPos()
    {
       return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
    }
